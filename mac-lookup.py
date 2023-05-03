@@ -10,13 +10,11 @@ password = os.environ["PASSWORD"]
 
 CLEAR = "clear"
 os.system(CLEAR)
-target = input("Enter the MAC address that you wish to find: ")
+target = input("Enter the MAC address you want to find.: ")
 
 
 def test_interfaces(interfaces: List[Dict[str, Any]]) -> Optional[str]:
-    """
-    Function to test target input against each interface
-    """
+
     for interface in interfaces:
         try:
             mac_addr = interface["bia"]
@@ -28,9 +26,7 @@ def test_interfaces(interfaces: List[Dict[str, Any]]) -> Optional[str]:
 
 
 async def get_dev_info(device: Dict[str, str]) -> Tuple[str, List[Dict[str, Any]]]:
-    """
-    Coroutine to gather interface info
-    """
+
     hostname = device["hostname"]
     async with AsyncIOSXEDriver(
         host=device["host"],
@@ -45,9 +41,7 @@ async def get_dev_info(device: Dict[str, str]) -> Tuple[str, List[Dict[str, Any]
 
 
 async def main() -> None:
-    """
-    Main coroutine
-    """
+
     hit_found = False
     coroutines = [get_dev_info(device) for device in DEVICES]
     results = await asyncio.gather(*coroutines)
