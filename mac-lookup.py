@@ -10,7 +10,7 @@ password = os.environ["PASSWORD"]
 
 CLEAR = "clear"
 os.system(CLEAR)
-target = input("Enter the MAC address you want to find.: ")
+target = input("Please type the MAC address you're trying to locate: ")
 
 
 def test_interfaces(interfaces: List[Dict[str, Any]]) -> Optional[str]:
